@@ -14,7 +14,7 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private RecordView recordView;
+   private MyView recordView;
     private Button btn;
     private TimerTask timerTask;
     private Timer timer;
@@ -23,13 +23,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recordView= (RecordView) findViewById(R.id.test);
+       recordView= (MyView) findViewById(R.id.test);
         btn= (Button) findViewById(R.id.btn);
         txtTimer= (TextView) findViewById(R.id.time);
         btn.setOnClickListener(this);
-        for(int i=0;i<10;++i){
-            recordView.setSecend(i);
-        }
         timer=new Timer(true);
 
     }
@@ -38,9 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void handleMessage(Message msg) {
             recordView.setSecend(msg.what);
-            Log.e("计时",msg.what+" ");
-            if (msg.what%40==0) {
-                txtTimer.setText(msg.what/40 + "秒");
+            if (msg.what%20==0) {
+                txtTimer.setText(msg.what/20 + "秒");
             }
         }
     };
@@ -50,17 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = v.getId();
         switch (id) {
             case R.id.btn:
-//                for (int i = 5; i < 1000; ++i) {
-//                    final int finalI = i;
-////                    new Thread(new Runnable() {
-////                        @Override
-////                        public void run() {
-////                            mHandler.sendEmptyMessage(finalI);
-////                        }
-////                    }).start();
-//
-//                }
-                timer.schedule(task,0, 25);
+                timer.schedule(task,0, 50);
                 break;
             default:
                 break;

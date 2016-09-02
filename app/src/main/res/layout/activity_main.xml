@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.administrator.recordplayground.MainActivity">
-    <com.example.administrator.recordplayground.RecordView
+    <com.example.administrator.recordplayground.MyView
+        android:background="#ffffff"
         android:id="@+id/test"
         android:layout_margin="5dp"
         android:layout_width="match_parent"

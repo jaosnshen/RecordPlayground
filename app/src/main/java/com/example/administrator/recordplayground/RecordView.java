@@ -84,12 +84,13 @@ public class RecordView extends View {
         secendPaint.setAntiAlias(true);
         secendPaint.setStrokeWidth(6);
         secendPaint.setTextSize(30);
+        Log.e("s",s+" ");
     }
 
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.e(TAG,"onDraw");
+       // Log.e(TAG,"onDraw");
         width=getWidth();
         height=getHeight();
         space=width/5;
@@ -97,18 +98,20 @@ public class RecordView extends View {
         int quarter40=space/40;
         int startX=0;
         canvas.drawLine(0,0,width,0,secendPaint);
-        Log.e("secend","secend"+secend);
-        for (int i=0;i<=5;++i){
+       // Log.e("此时此刻",s*quarter40+" ");
+        int lenght=((s*quarter40)%space);
+        for (int i=0;i<=5+lenght;++i){
             startX=space*i;
-            Log.e("startX",startX+" ");
             int tempx=startX-quarter40*s;
             canvas.drawLine(tempx,0,tempx,100,secendPaint);
             for (int l = 0; l < 3; l++) {
                 int temp = tempx + quarter * (l + 1);
                 canvas.drawLine(temp, 0, temp, 50, secendPaint);
             }
-            canvas.drawText("00:11",tempx+20,100,secendPaint);
+//            int l=s%40;
+            canvas.drawText(String.format("%01d:%01d",i/60,i),tempx+20,100,secendPaint);
         }
+        s=0;
         super.onDraw(canvas);
     }
 }
